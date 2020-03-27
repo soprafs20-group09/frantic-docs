@@ -1,6 +1,6 @@
 asyncapi: 2.0.0
 info:
-  title: Frantic Websocket Specification
+  title: Frantic Websocket API
   version: '1.0'
   description: |
     ### PUB: Packets sent by the client
@@ -47,7 +47,7 @@ channels:
             duration:
               type: string
               example: "medium"
-            public:
+            publicLobby:
               type: boolean
               example: "false"
   /topic/lobby/:id/lobby-state:
@@ -107,7 +107,7 @@ channels:
         payload:
           type: object
           properties:
-            username:
+            message:
               type: string
               example: "I'm ready"
   /topic/lobby/:id/chat:
@@ -364,7 +364,7 @@ channels:
 
   /topic/lobby/:id/nice-try-window:
     subscribe:
-      summary: "Counter Attack Opportunity"
+      summary: "Nice Try Opportunity"
       message:
         payload:
           type: object
@@ -380,7 +380,7 @@ channels:
 
   /app/lobby/:id/action/nice-try:
       publish:
-        summary: "Counter Attack"
+        summary: "Nice Try"
         message:
           payload:
             type: object
@@ -557,5 +557,3 @@ channels:
               example:
                 "kyrill": 120
                 "remy": 80
-
-
