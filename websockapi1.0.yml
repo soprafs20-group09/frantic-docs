@@ -1,0 +1,558 @@
+asyncapi: 2.0.0
+info:
+  title: Frantic Websocket Specification
+  version: '1.0'
+
+
+defaultContentType: application/json
+
+channels:
+  /app/register:
+    publish:
+      summary: "Register Connection"
+      message:
+        payload:
+          type: object
+          properties:
+            token:
+              type: string
+              example: "123-abc-456-def"
+  /user/queue/register:
+    subscribe:
+      summary: "Player Registered Successfully"
+      message:
+        payload:
+          type: object
+          properties:
+            username:
+              type: string
+              example: "user1"
+            lobbyId:
+              type: string
+              example: "1"
+
+  /app/lobby/:id/settings:
+    publish:
+      summary: "Set Lobby Settings"
+      message:
+        payload:
+          type: object
+          properties:
+            lobbyName:
+              type: string
+              example: "kyrill's lobby"
+            duration:
+              type: string
+              example: "medium"
+            public:
+              type: boolean
+              example: "false"
+  /topic/lobby/:id/lobby-state:
+    subscribe:
+      summary: "Update Lobby"
+      message:
+        payload:
+          type: object
+          properties:
+            players:
+              type: array
+              properties:
+                username:
+                  type: string
+                  example: "kyrill"
+                admin:
+                  type: boolean
+                  example: false
+              example:
+                - username: "kyrill"
+                  admin: false
+            settings:
+              type: object
+              properties:
+                lobbyName:
+                  type: string
+                  example: "kyrill's lobby"
+                duration:
+                  type: string
+                  example: "medium"
+
+  /app/lobby/:id/kick:
+    publish:
+      summary: "Kick Player"
+      message:
+        payload:
+          type: object
+          properties:
+            username:
+              type: string
+              example: "kyrill"
+  /topic/lobby/:id/disconnect:
+    subscribe:
+      summary: "Disconnect Player"
+      message:
+        payload:
+          type: object
+          properties:
+            reason:
+              type: string
+              example: "Lobby was closed"
+
+  /app/lobby:id/chat:
+    publish:
+      summary: "Send Message"
+      message:
+        payload:
+          type: object
+          properties:
+            username:
+              type: string
+              example: "I'm ready"
+  /topic/lobby/:id/chat:
+    subscribe:
+      summary: "Update Chat"
+      message:
+        payload:
+          type: object
+          properties:
+            type:
+              type: string
+              example: "msg"
+            username:
+              type: string
+              example: "kyrill"
+            message:
+              type: string
+              example: "I'm ready"
+
+  /app/lobby:id/start-game:
+    publish:
+      summary: "Start Game"
+      message:
+        payload:
+          type: object
+  /topic/lobby/:id/start-game:
+    subscribe:
+      summary: "Start Game"
+      message:
+        payload:
+          type: object
+
+  /topic/lobby/:id/start-round:
+    subscribe:
+      summary: "Start Game Round"
+      message:
+        payload:
+          type: object
+
+  /topic/lobby/:id/game-state:
+    subscribe:
+      summary: "Game State"
+      message:
+        payload:
+          type: object
+          properties:
+            discardPile:
+              type: object
+              properties:
+                "type":
+                  type: string
+                  example: "number"
+                value:
+                  type: string
+                  example: "1"
+                color:
+                  type: string
+                  example: "red"
+            players:
+              type: array
+              properties:
+                username:
+                  type: string
+                points:
+                  type: int
+                cards:
+                  type: array
+                  properties:
+                    "type":
+                      type: string
+                skipped:
+                  type: boolean
+              example:
+                - username: "kyrill"
+                  points: 12
+                  cards:
+                    - type: "back"
+                  skipped: false
+                  
+  /topic/lobby/:id/hand:
+    subscribe:
+      summary: "Hand"
+      message:
+        payload:
+          type: object
+          properties:
+            cards:
+              type: array
+              properties:
+                "type":
+                  type: string
+                value:
+                  type: string
+                color:
+                  type: string
+              example:
+                - type: "number"
+                  value: "3"
+                  color: "red"
+                - type: "special"
+                  value: "fuck-you"
+                  color: "multicolor"
+
+  /topic/lobby/:id/playable-cards:
+    subscribe:
+      summary: "Playable Cards"
+      message:
+        payload:
+          type: object
+          properties:
+            playable:
+              type: array
+              example:
+                - 3
+                - 5
+                
+  /app/lobby/:id/play:
+    publish:
+      summary: "Play Card"
+      message:
+        payload:
+          type: object
+          properties:
+            index:
+              type: integer
+              example: 3
+              
+  /topic/lobby/:id/action-response:
+    subscribe:
+      summary: "Response to Action Card"
+      message:
+        payload:
+          type: object
+          properties:
+            action:
+              type: string
+              example: "gift"
+
+  /app/lobby/:id/action/gift:
+      publish:
+        summary: "Gift"
+        message:
+          payload:
+            type: object
+            properties:
+              cards:
+                type: array
+                example:
+                  - 3
+                  - 5
+              target:
+                type: string
+                example: "kyrill"
+
+  /app/lobby/:id/action/exchange:
+      publish:
+        summary: "Exchange"
+        message:
+          payload:
+            type: object
+            properties:
+              cards:
+                type: array
+                example:
+                  - 3
+                  - 5
+              target:
+                type: string
+                example: "kyrill"
+
+  /app/lobby/:id/action/skip:
+      publish:
+        summary: "Skip"
+        message:
+          payload:
+            type: object
+            properties:
+              target:
+                type: string
+                example: "kyrill"
+
+  /app/lobby/:id/action/fantastic:
+      publish:
+        summary: "Fantastic"
+        message:
+          oneOf:
+            - payload:
+                type: object
+                properties:
+                  number:
+                    type: integer
+                    example: 3
+            - payload:
+                type: object
+                properties:
+                  color:
+                    type: string
+                    example: "red"
+                    
+  /app/lobby/:id/action/fantastic-four:
+      publish:
+        summary: "Fantastic Four"
+        message:
+          oneOf:
+            - payload:
+                type: object
+                properties:
+                  players:
+                    type: object
+                    example:
+                      "kyrill": 1
+                      "remy": 3
+                  number:
+                    type: integer
+                    example: 3
+            - payload:
+                type: object
+                properties:
+                  players:
+                    type: object
+                    example:
+                      "kyrill": 1
+                      "remy": 3
+                  color:
+                    type: string
+                    example: "red"
+
+  /topic/lobby/:id/attack-window:
+    subscribe:
+      summary: "Counter Attack Opportunity"
+      message:
+        payload:
+          type: object
+          properties:
+            time:
+              type: integer
+              example: 5
+            playable:
+              type: array
+              example:
+                - 3
+                - 5
+
+  /app/lobby/:id/action/counter-attack:
+      publish:
+        summary: "Counter Attack"
+        message:
+          payload:
+            type: object
+            properties:
+              color:
+                type: string
+                example: "red"
+
+  /topic/lobby/:id/nice-try-window:
+    subscribe:
+      summary: "Counter Attack Opportunity"
+      message:
+        payload:
+          type: object
+          properties:
+            time:
+              type: integer
+              example: 5
+            playable:
+              type: array
+              example:
+                - 3
+                - 5
+
+  /app/lobby/:id/action/nice-try:
+      publish:
+        summary: "Counter Attack"
+        message:
+          payload:
+            type: object
+            properties:
+              color:
+                type: string
+                example: "red"
+
+  /app/lobby/:id/action/equality:
+      publish:
+        summary: "Equality"
+        message:
+          payload:
+            type: object
+            properties:
+              target:
+                type: string
+                example: "kyrill"
+              color:
+                type: string
+                example: "red"
+
+  /topic/lobby/:id/event:
+    subscribe:
+      summary: "Event Happens"
+      message:
+        payload:
+          type: object
+          properties:
+            event:
+              type: string
+              example: "tornado"
+            message:
+              type: string
+              example: "All cards in the hands of the players…"
+              
+  /app/lobby/:id/action/surprise-party:
+      publish:
+        summary: "Surprise Party"
+        message:
+          payload:
+            type: object
+            properties:
+              card:
+                type: integer
+                example: 3
+              target:
+                type: string
+                example: "kyrill"
+
+  /app/lobby/:id/action/merry-christmas:
+      publish:
+        summary: "Merry Christmas"
+        message:
+          payload:
+            type: object
+            properties:
+              targets:
+                type: array
+                example:
+                  - "kyrill": [3, 5]
+
+  /topic/lobby/:id/gambling-man-window:
+    subscribe:
+      summary: "Gambling Man Selection"
+      message:
+        payload:
+          type: object
+          properties:
+            time:
+              type: integer
+              example: 10
+            playable:
+              type: array
+              example:
+                - 3
+                - 5
+
+  /app/lobby/:id/action/recession:
+      publish:
+        summary: "Recession"
+        message:
+          payload:
+            type: object
+            properties:
+              cards:
+                type: array
+                example: [3, 5]
+
+  /topic/lobby/:id/market-window:
+    subscribe:
+      summary: "Market Selection"
+      message:
+        payload:
+          type: object
+          properties:
+            time:
+              type: integer
+              example: 10
+            cards:
+              type: array
+              properties:
+                "type":
+                  type: string
+                value:
+                  type: string
+                color:
+                  type: string
+              example:
+                - type: "number"
+                  value: "3"
+                  color: "red"
+                - type: "special"
+                  value: "fuck-you"
+                  color: "multicolor"
+
+  /app/lobby/:id/action/market:
+      publish:
+        summary: "Market"
+        message:
+          payload:
+            type: object
+            properties:
+              card:
+                type: integer
+                example: 3
+
+  /app/lobby/:id/draw:
+      publish:
+        summary: "Draw Card"
+        message:
+          payload:
+            type: object
+  /topic/lobby/:id/draw:
+    subscribe:
+      summary: "Draw Card Animation"
+      message:
+        payload:
+          type: object
+          properties:
+            amount:
+              type: integer
+              example: 5
+
+  /app/lobby/:id/end-turn:
+      publish:
+        summary: "End Turn"
+        message:
+          payload:
+            type: object
+
+  /topic/lobby/:id/end-round:
+    subscribe:
+      summary: "Game Round is Over"
+      message:
+        payload:
+          type: object
+          properties:
+            players:
+              type: object
+              example:
+                "kyrill": 12
+                "remy": 30
+
+  /topic/lobby/:id/end-game:
+    subscribe:
+      summary: "Game is Over"
+      message:
+        payload:
+          type: object
+          properties:
+            players:
+              type: object
+              example:
+                "kyrill": 120
+                "remy": 80
+
+
