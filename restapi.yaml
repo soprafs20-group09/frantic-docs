@@ -1,0 +1,163 @@
+openapi: 3.0.0
+# Added by API Auto Mocking Plugin
+info:
+  description: Frantic REST API
+  version: "1.0.0"
+  title: Frantic
+paths:
+  /lobbies:
+    get:
+      tags:
+        - lobbies
+      summary: get list of lobbies
+      parameters:
+        - name: name
+          in: query
+          schema:
+            type: string
+            example: /lobbies?name=casual
+          description: filter lobby names
+        - name: creator
+          in: query
+          schema:
+            type: string
+            example: /lobbies?creator=foo
+          description: filter creator names
+      responses:
+        '200':
+          description: list of lobbies
+          content:
+            application/json:
+              schema:
+                type: array
+                items: 
+                  type: object
+                  properties:
+                    id:
+                      type: integer
+                      example: 1
+                    name:
+                      type: string
+                      example: foo's lobby
+                    creator:
+                      type: string
+                      example: foo
+                    players:
+                      type: integer
+                      example: 3
+    post:
+      tags:
+        - lobbies
+      summary: create a lobby from username
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                username:
+                  type: string
+                  example: foo
+      responses:
+        '201':
+          description: lobby created
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  token:
+                    type: string
+                    example: asdf-1234-asdf-1234
+                  name:
+                    type: string
+                    example: foo's lobby
+                  username:
+                    type: string
+                    example: foo
+        '400':
+          description: Bad request. Request body is missing or invalid.
+  /lobbies/{id}:
+    get:
+      tags:
+        - lobbies/id
+      summary: get list of players inside lobby
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: integer
+            minimum: 1
+      responses:
+        '200':
+          description: list of players
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  type: object
+                  properties:
+                    username:
+                      type: string
+                      example: foo
+                    score:
+                      type: integer
+                      example: 168
+        '404':
+          description: Lobby not found
+    put:
+      tags:
+        - lobbies/id
+      summary: join a lobby with username
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: integer
+            minimum: 1
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                username:
+                  type: string
+                  example: foo
+      responses:
+        '201':
+          description: OK. Username added to lobby.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  token:
+                    type: string
+                    example: asdf-1234-asdf-1234
+                  name:
+                    type: string
+                    example: foo's lobby
+                  username:
+                    type: string
+                    example: foo
+        '400':
+          description: Bad request. Request body is missing or invalid.
+        '403':
+          description: Forbidden. Lobby is private.
+        '404':
+          description: Lobby not found.
+        '409':
+          description: Username already exists on this server.
+
+
+
+# Added by API Auto Mocking Plugin
+servers:
+  - description: SwaggerHub API Auto Mocking
+    url: https://virtserver.swaggerhub.com/JaanWilli/Frantic/1.0.0
