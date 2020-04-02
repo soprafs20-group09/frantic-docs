@@ -11,18 +11,12 @@ paths:
         - lobbies
       summary: get list of lobbies
       parameters:
-        - name: name
+        - name: q
           in: query
           schema:
             type: string
-            example: /lobbies?name=casual
-          description: filter lobby names
-        - name: creator
-          in: query
-          schema:
-            type: string
-            example: /lobbies?creator=foo
-          description: filter creator names
+            example: /lobbies?filter=foo
+          description: filter lobby names or creators
       responses:
         '200':
           description: list of lobbies
