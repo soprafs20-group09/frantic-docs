@@ -78,6 +78,22 @@ channels:
                 duration:
                   type: string
                   example: "medium"
+                durationItems:
+                  type: array
+                  properties:
+                    name:
+                      type: string
+                    value:
+                      type: string
+                  example:
+                    - name: "Short"
+                      value: "short"
+                public:
+                  type: boolean
+                  example: true
+            joinLink:
+              type: string
+              example: "https://frantic.online/join?id=69"
 
   /app/lobby/:id/kick:
     publish:
@@ -100,7 +116,7 @@ channels:
               type: string
               example: "Lobby was closed"
 
-  /app/lobby:id/chat:
+  /app/lobby/:id/chat:
     publish:
       summary: "Send Message"
       message:
