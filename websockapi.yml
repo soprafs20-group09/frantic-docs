@@ -50,7 +50,7 @@ channels:
             publicLobby:
               type: boolean
               example: "false"
-  /topic/lobby/:id/lobby-state:
+  /user/queue/lobby/:id/lobby-state:
     subscribe:
       summary: "Update Lobby"
       message:
@@ -88,7 +88,7 @@ channels:
                   example:
                     - name: "Short"
                       value: "short"
-                public:
+                publicLobby:
                   type: boolean
                   example: true
             joinLink:
@@ -105,7 +105,7 @@ channels:
             username:
               type: string
               example: "kyrill"
-  /topic/lobby/:id/disconnect:
+  /user/queue/disconnect:
     subscribe:
       summary: "Disconnect Player"
       message:
@@ -126,7 +126,7 @@ channels:
             message:
               type: string
               example: "I'm ready"
-  /topic/lobby/:id/chat:
+  /user/queue/lobby/:id/chat:
     subscribe:
       summary: "Update Chat"
       message:
@@ -139,6 +139,9 @@ channels:
             username:
               type: string
               example: "kyrill"
+            icon:
+              type: string
+              example: "avatar:kyrill"
             message:
               type: string
               example: "I'm ready"
@@ -149,21 +152,21 @@ channels:
       message:
         payload:
           type: object
-  /topic/lobby/:id/start-game:
+  /user/queue/lobby/:id/start-game:
     subscribe:
       summary: "Start Game"
       message:
         payload:
           type: object
 
-  /topic/lobby/:id/start-round:
+  /user/queue/lobby/:id/start-round:
     subscribe:
       summary: "Start Game Round"
       message:
         payload:
           type: object
 
-  /topic/lobby/:id/game-state:
+  /user/queue/lobby/:id/game-state:
     subscribe:
       summary: "Game State"
       message:
@@ -203,7 +206,7 @@ channels:
                     - type: "back"
                   skipped: false
                   
-  /topic/lobby/:id/hand:
+  /user/queue/lobby/:id/hand:
     subscribe:
       summary: "Hand"
       message:
@@ -227,7 +230,7 @@ channels:
                   value: "fuck-you"
                   color: "multicolor"
 
-  /topic/lobby/:id/playable-cards:
+  /user/queue/lobby/:id/playable-cards:
     subscribe:
       summary: "Playable Cards"
       message:
@@ -251,7 +254,7 @@ channels:
               type: integer
               example: 3
               
-  /topic/lobby/:id/action-response:
+  /user/queue/lobby/:id/action-response:
     subscribe:
       summary: "Response to Action Card"
       message:
@@ -351,7 +354,7 @@ channels:
                     type: string
                     example: "red"
 
-  /topic/lobby/:id/attack-window:
+  /user/queue/lobby/:id/attack-window:
     subscribe:
       summary: "Counter Attack Opportunity"
       message:
@@ -378,7 +381,7 @@ channels:
                 type: string
                 example: "red"
 
-  /topic/lobby/:id/nice-try-window:
+  /user/queue/lobby/:id/nice-try-window:
     subscribe:
       summary: "Nice Try Opportunity"
       message:
@@ -419,7 +422,7 @@ channels:
                 type: string
                 example: "red"
 
-  /topic/lobby/:id/event:
+  /user/queue/lobby/:id/event:
     subscribe:
       summary: "Event Happens"
       message:
@@ -459,7 +462,7 @@ channels:
                 example:
                   - "kyrill": [3, 5]
 
-  /topic/lobby/:id/gambling-man-window:
+  /user/queue/lobby/:id/gambling-man-window:
     subscribe:
       summary: "Gambling Man Selection"
       message:
@@ -486,7 +489,7 @@ channels:
                 type: array
                 example: [3, 5]
 
-  /topic/lobby/:id/market-window:
+  /user/queue/lobby/:id/market-window:
     subscribe:
       summary: "Market Selection"
       message:
@@ -530,7 +533,7 @@ channels:
         message:
           payload:
             type: object
-  /topic/lobby/:id/draw:
+  /user/queue/lobby/:id/draw:
     subscribe:
       summary: "Draw Card Animation"
       message:
@@ -548,7 +551,7 @@ channels:
           payload:
             type: object
 
-  /topic/lobby/:id/end-round:
+  /user/queue/lobby/:id/end-round:
     subscribe:
       summary: "Game Round is Over"
       message:
@@ -561,7 +564,7 @@ channels:
                 "kyrill": 12
                 "remy": 30
 
-  /topic/lobby/:id/end-game:
+  /user/queue/lobby/:id/end-game:
     subscribe:
       summary: "Game is Over"
       message:
