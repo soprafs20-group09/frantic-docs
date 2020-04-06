@@ -142,12 +142,12 @@ paths:
                     example: foo
         '400':
           description: Bad request. Request body is missing or invalid.
-        '403':
-          description: Forbidden. Lobby is private.
         '404':
           description: Lobby not found.
         '409':
           description: Username already exists on this server.
+        '410':
+          description: Lobby is full.
 
 
 
