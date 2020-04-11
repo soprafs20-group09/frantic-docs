@@ -247,6 +247,20 @@ channels:
                 - 3
                 - 5
                 
+  /user/queue/lobby/:id/start-turn:
+      subscribe:
+        summary: "Start Turn"
+        message:
+          payload:
+            type: object
+            properties:
+              currentPlayer:
+                type: string
+                example: "Kyrill"
+              time:
+                type: int
+                example: 30
+
   /app/lobby/:id/play:
     publish:
       summary: "Play Card"
