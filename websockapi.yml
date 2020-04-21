@@ -388,7 +388,7 @@ channels:
                 - 3
                 - 5
 
-  /app/lobby/:id/action/counter-attack:
+  /app/lobby/:id/action/counterattack:
       publish:
         summary: "Counter Attack"
         message:
