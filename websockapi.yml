@@ -352,7 +352,7 @@ channels:
             - payload:
                 type: object
                 properties:
-                  players:
+                  targets:
                     type: object
                     example:
                       "kyrill": 1
@@ -363,7 +363,7 @@ channels:
             - payload:
                 type: object
                 properties:
-                  players:
+                  targets:
                     type: object
                     example:
                       "kyrill": 1
