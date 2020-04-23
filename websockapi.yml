@@ -374,7 +374,7 @@ channels:
 
   /user/queue/lobby/:id/attack-window:
     subscribe:
-      summary: "Counter Attack Opportunity"
+      summary: "Counter Attack / Nice Try Opportunity"
       message:
         payload:
           type: object
@@ -398,22 +398,6 @@ channels:
               color:
                 type: string
                 example: "red"
-
-  /user/queue/lobby/:id/nice-try-window:
-    subscribe:
-      summary: "Nice Try Opportunity"
-      message:
-        payload:
-          type: object
-          properties:
-            time:
-              type: integer
-              example: 5
-            playable:
-              type: array
-              example:
-                - 3
-                - 5
 
   /app/lobby/:id/action/nice-try:
       publish:
