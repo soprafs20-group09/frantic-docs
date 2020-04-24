@@ -569,6 +569,9 @@ channels:
               example:
                 "kyrill": 12
                 "remy": 30
+            pointLimit:
+              type: int
+              example: 168
 
   /user/queue/lobby/:id/end-game:
     subscribe:
