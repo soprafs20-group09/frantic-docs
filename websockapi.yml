@@ -480,6 +480,17 @@ channels:
                 - 3
                 - 5
 
+  /user/queue/lobby/:id/recession:
+      subscribe:
+        summary: "Recession Amount"
+        message:
+          payload:
+            type: object
+            properties:
+              amount:
+                type: integer
+                example: 2
+                
   /app/lobby/:id/action/recession:
       publish:
         summary: "Recession"
@@ -490,7 +501,7 @@ channels:
               cards:
                 type: array
                 example: [3, 5]
-
+                
   /user/queue/lobby/:id/market-window:
     subscribe:
       summary: "Market Selection"
