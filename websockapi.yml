@@ -388,6 +388,23 @@ channels:
                 - 3
                 - 5
 
+  /user/queue/lobby/:id/attack-turn:
+    subscribe:
+      summary: "Counter Attack Turn"
+      message:
+        payload:
+          type: object
+          properties:
+            currentPlayer:
+              type: string
+              example: "Kyrill"
+            time:
+              type: integer
+              example: 30
+            turn:
+              type: integer
+              example: 3
+              
   /app/lobby/:id/action/counterattack:
       publish:
         summary: "Counter Attack"
