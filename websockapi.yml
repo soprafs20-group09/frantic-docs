@@ -1,7 +1,7 @@
 asyncapi: 2.0.0
 info:
   title: Frantic Websocket API
-  version: '1.1'
+  version: '1.2'
   description: |
     ### PUB: Packets sent by the client
     ### SUB: Packets received from the server
@@ -234,18 +234,46 @@ channels:
                   color: "multicolor"
                   key: 48
 
-  /user/queue/lobby/:id/playable-cards:
+  /user/queue/lobby/:id/playable:
     subscribe:
-      summary: "Playable Cards"
+      summary: "Playable"
       message:
         payload:
           type: object
           properties:
-            playable:
+            cards:
               type: array
               example:
                 - 3
                 - 5
+            canDraw:
+              type: boolean
+              example: true
+            canEnd:
+              type: boolean
+              example: false
+                
+  /user/queue/lobby/:id/timer:
+    subscribe:
+      summary: "Timer"
+      message:
+        payload:
+          type: object
+          properties:
+            seconds:
+              type: integer
+              example: 30
+              
+  /user/queue/lobby/:id/animation-speed:
+    subscribe:
+      summary: "Animation Speed"
+      message:
+        payload:
+          type: object
+          properties:
+            hand:
+              type: integer
+              example: 0
                 
   /user/queue/lobby/:id/start-turn:
       subscribe:
@@ -257,9 +285,9 @@ channels:
               currentPlayer:
                 type: string
                 example: "Kyrill"
-              time:
-                type: int
-                example: 30
+              timebombRounds:
+                type: integer
+                example: 3
 
   /app/lobby/:id/play:
     publish:
@@ -398,12 +426,6 @@ channels:
             currentPlayer:
               type: string
               example: "Kyrill"
-            time:
-              type: integer
-              example: 30
-            turn:
-              type: integer
-              example: 3
               
   /app/lobby/:id/action/counterattack:
       publish:
@@ -488,9 +510,6 @@ channels:
         payload:
           type: object
           properties:
-            time:
-              type: integer
-              example: 10
             playable:
               type: array
               example:
@@ -526,9 +545,6 @@ channels:
         payload:
           type: object
           properties:
-            time:
-              type: integer
-              example: 10
             cards:
               type: array
               properties:
