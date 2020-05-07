@@ -2,7 +2,7 @@ openapi: 3.0.0
 # Added by API Auto Mocking Plugin
 info:
   description: Frantic REST API
-  version: "1.0.0"
+  version: "1.1.0"
   title: Frantic
 paths:
   /lobbies:
@@ -73,35 +73,6 @@ paths:
         '400':
           description: Bad request. Request body is missing or invalid.
   /lobbies/{id}:
-    get:
-      tags:
-        - lobbies/id
-      summary: get list of players inside lobby
-      parameters:
-        - name: id
-          in: path
-          required: true
-          schema:
-            type: integer
-            minimum: 1
-      responses:
-        '200':
-          description: list of players
-          content:
-            application/json:
-              schema:
-                type: array
-                items:
-                  type: object
-                  properties:
-                    username:
-                      type: string
-                      example: foo
-                    score:
-                      type: integer
-                      example: 168
-        '404':
-          description: Lobby not found
     put:
       tags:
         - lobbies/id
@@ -142,12 +113,12 @@ paths:
                     example: foo
         '400':
           description: Bad request. Request body is missing or invalid.
+        '403':
+          description: Forbidden. Lobby is private.
         '404':
           description: Lobby not found.
         '409':
           description: Username already exists on this server.
-        '410':
-          description: Lobby is full.
 
 
 
