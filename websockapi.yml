@@ -199,12 +199,15 @@ channels:
                       type: string
                 skipped:
                   type: boolean
+                admin:
+                  type: boolean
               example:
                 - username: "kyrill"
                   points: 12
                   cards:
                     - type: "back"
                   skipped: false
+                  admin: true
                   
   /user/queue/lobby/:id/hand:
     subscribe:
@@ -611,11 +614,25 @@ channels:
             players:
               type: object
               example:
+                "kyrill": 54
+                "remy": 63
+            changes:
+              type: object
+              example:
                 "kyrill": 12
-                "remy": 30
+                "remy": 14
             pointLimit:
               type: int
               example: 168
+            seconds:
+              type: int
+              example: 20
+            icon:
+              type: string
+              example: "event:doomsday"
+            message:
+              type: string
+              example: "Doomday happened."
 
   /user/queue/lobby/:id/end-game:
     subscribe:
@@ -629,3 +646,10 @@ channels:
               example:
                 "kyrill": 120
                 "remy": 80
+
+  /app/lobby/:id/rematch:
+    publish:
+      summary: "Rematch"
+      message:
+        payload:
+          type: object
