@@ -653,3 +653,14 @@ channels:
       message:
         payload:
           type: object
+          
+  /user/queue/reconnect:
+    subscribe:
+      summary: "Reconnect"
+      message:
+        payload:
+          type: object
+          properties:
+            token:
+              type: string
+              example: "abc-123-abc-123"
