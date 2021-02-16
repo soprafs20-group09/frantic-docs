@@ -1697,10 +1697,6 @@ Accepts **one of** the following messages:
   <td>integer</td>
 </tr>
 <tr>
-  <td>seconds </td>
-  <td>integer</td>
-</tr>
-<tr>
   <td>icon </td>
   <td>string</td>
 </tr>
@@ -1723,7 +1719,6 @@ Accepts **one of** the following messages:
     "remy": 14
   },
   "pointLimit": 168,
-  "seconds": 20,
   "icon": "event:doomsday",
   "message": "Doomday happened."
 }

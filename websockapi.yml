@@ -624,9 +624,6 @@ channels:
             pointLimit:
               type: integer
               example: 168
-            seconds:
-              type: integer
-              example: 20
             icon:
               type: string
               example: "event:doomsday"
