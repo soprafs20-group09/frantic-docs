@@ -191,7 +191,7 @@ channels:
                 username:
                   type: string
                 points:
-                  type: int
+                  type: integer
                 cards:
                   type: array
                   properties:
@@ -622,10 +622,10 @@ channels:
                 "kyrill": 12
                 "remy": 14
             pointLimit:
-              type: int
+              type: integer
               example: 168
             seconds:
-              type: int
+              type: integer
               example: 20
             icon:
               type: string

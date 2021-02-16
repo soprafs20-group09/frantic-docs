@@ -529,7 +529,7 @@ join a lobby with username
 </tr>
 <tr>
   <td>players.points </td>
-  <td>int</td>
+  <td>integer</td>
 </tr>
 <tr>
   <td>players.cards </td>
@@ -1694,11 +1694,11 @@ Accepts **one of** the following messages:
 </tr>
 <tr>
   <td>pointLimit </td>
-  <td>int</td>
+  <td>integer</td>
 </tr>
 <tr>
   <td>seconds </td>
-  <td>int</td>
+  <td>integer</td>
 </tr>
 <tr>
   <td>icon </td>
