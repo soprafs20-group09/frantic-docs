@@ -149,6 +149,10 @@ join a lobby with username
   <td>string</td>
 </tr>
 <tr>
+  <td>turnDuration </td>
+  <td>string</td>
+</tr>
+<tr>
   <td>publicLobby </td>
   <td>boolean</td>
 </tr></tbody>
@@ -160,6 +164,7 @@ join a lobby with username
 {
   "lobbyName": "kyrill's lobby",
   "duration": "medium",
+  "turnDuration": "normal",
   "publicLobby": "false"
 }
 ```
