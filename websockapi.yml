@@ -47,6 +47,9 @@ channels:
             duration:
               type: string
               example: "medium"
+            turnDuration:
+              type: string
+              example: "normal"
             publicLobby:
               type: boolean
               example: "false"
