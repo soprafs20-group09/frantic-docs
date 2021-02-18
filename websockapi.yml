@@ -624,6 +624,9 @@ channels:
               example:
                 "kyrill": 12
                 "remy": 14
+            admin:
+              type: string
+              example: "kyrill"
             pointLimit:
               type: integer
               example: 168
