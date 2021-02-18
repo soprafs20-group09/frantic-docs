@@ -1698,6 +1698,10 @@ Accepts **one of** the following messages:
   <td>object</td>
 </tr>
 <tr>
+  <td>admin </td>
+  <td>string</td>
+</tr>
+<tr>
   <td>pointLimit </td>
   <td>integer</td>
 </tr>
@@ -1723,6 +1727,7 @@ Accepts **one of** the following messages:
     "kyrill": 12,
     "remy": 14
   },
+  "admin": "kyrill",
   "pointLimit": 168,
   "icon": "event:doomsday",
   "message": "Doomday happened."
