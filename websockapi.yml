@@ -78,10 +78,10 @@ channels:
                 lobbyName:
                   type: string
                   example: "kyrill's lobby"
-                duration:
+                gameDuration:
                   type: string
                   example: "medium"
-                durationItems:
+                gameDurationItems:
                   type: array
                   properties:
                     name:
@@ -91,6 +91,19 @@ channels:
                   example:
                     - name: "Short"
                       value: "short"
+                turnDuration:
+                  type: string
+                  example: "normal"
+                turnDurationItems:
+                  type: array
+                  properties:
+                    name:
+                      type: string
+                    value:
+                      type: string
+                  example:
+                    - name: "Normal"
+                      value: "normal"
                 publicLobby:
                   type: boolean
                   example: true
