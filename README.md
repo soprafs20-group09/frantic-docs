@@ -145,7 +145,7 @@ join a lobby with username
   <td>string</td>
 </tr>
 <tr>
-  <td>duration </td>
+  <td>gameDuration </td>
   <td>string</td>
 </tr>
 <tr>
@@ -163,7 +163,7 @@ join a lobby with username
 ```json
 {
   "lobbyName": "kyrill's lobby",
-  "duration": "medium",
+  "gameDuration": "medium",
   "turnDuration": "normal",
   "publicLobby": "false"
 }
@@ -208,19 +208,35 @@ join a lobby with username
   <td>string</td>
 </tr>
 <tr>
-  <td>settings.duration </td>
+  <td>settings.gameDuration </td>
   <td>string</td>
 </tr>
 <tr>
-  <td>settings.durationItems </td>
+  <td>settings.gameDurationItems </td>
   <td>array</td>
 </tr>
 <tr>
-  <td>settings.durationItems.name </td>
+  <td>settings.gameDurationItems.name </td>
   <td>string</td>
 </tr>
 <tr>
-  <td>settings.durationItems.value </td>
+  <td>settings.gameDurationItems.value </td>
+  <td>string</td>
+</tr>
+<tr>
+  <td>settings.turnDuration </td>
+  <td>string</td>
+</tr>
+<tr>
+  <td>settings.turnDurationItems </td>
+  <td>array</td>
+</tr>
+<tr>
+  <td>settings.turnDurationItems.name </td>
+  <td>string</td>
+</tr>
+<tr>
+  <td>settings.turnDurationItems.value </td>
   <td>string</td>
 </tr>
 <tr>
@@ -241,11 +257,18 @@ join a lobby with username
   ],
   "settings": {
     "lobbyName": "kyrill's lobby",
-    "duration": "medium",
-    "durationItems": [
+    "gameDuration": "medium",
+    "gameDurationItems": [
       {
         "name": "Short",
         "value": "short"
+      }
+    ],
+    "turnDuration": "normal",
+    "turnDurationItems": [
+      {
+        "name": "Normal",
+        "value": "normal"
       }
     ],
     "publicLobby": true
