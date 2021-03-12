@@ -27,9 +27,9 @@ paths:
                 items: 
                   type: object
                   properties:
-                    id:
-                      type: integer
-                      example: 1
+                    lobbyId:
+                      type: string
+                      example: "asdf"
                     name:
                       type: string
                       example: foo's lobby
@@ -37,6 +37,26 @@ paths:
                       type: string
                       example: foo
                     players:
+                      type: array
+                      items:
+                        type: object
+                        properties:
+                          username:
+                            type: string
+                            example: "foo"
+                          points:
+                            type: integer
+                            example: 123
+                    type:
+                      type: string
+                      example: "public"
+                    running:
+                      type: boolean
+                      example: true
+                    startTime:
+                      type: number
+                      example: 1615556982
+                    roundCount:
                       type: integer
                       example: 3
     post:
