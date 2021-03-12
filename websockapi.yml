@@ -47,6 +47,9 @@ channels:
             duration:
               type: string
               example: "medium"
+            turnDuration:
+              type: string
+              example: "normal"
             publicLobby:
               type: boolean
               example: "false"
@@ -75,10 +78,10 @@ channels:
                 lobbyName:
                   type: string
                   example: "kyrill's lobby"
-                duration:
+                gameDuration:
                   type: string
                   example: "medium"
-                durationItems:
+                gameDurationItems:
                   type: array
                   properties:
                     name:
@@ -88,6 +91,19 @@ channels:
                   example:
                     - name: "Short"
                       value: "short"
+                turnDuration:
+                  type: string
+                  example: "normal"
+                turnDurationItems:
+                  type: array
+                  properties:
+                    name:
+                      type: string
+                    value:
+                      type: string
+                  example:
+                    - name: "Normal"
+                      value: "normal"
                 publicLobby:
                   type: boolean
                   example: true
@@ -621,6 +637,9 @@ channels:
               example:
                 "kyrill": 12
                 "remy": 14
+            admin:
+              type: string
+              example: "kyrill"
             pointLimit:
               type: integer
               example: 168
